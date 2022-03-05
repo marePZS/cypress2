@@ -1,7 +1,6 @@
 {
   "name": "cypress2",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress open"
@@ -14,5 +13,14 @@
   },
   "dependencies": {
     "faker": "^6.6.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marePZS/cypress2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marePZS/cypress2/issues"
+  },
+  "homepage": "https://github.com/marePZS/cypress2#readme",
+  "description": ""
 }
