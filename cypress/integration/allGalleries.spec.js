@@ -1,9 +1,10 @@
 /// <reference types= 'cypress'/>
 import {allGalleries} from '../pageObjects/allGalleriesPOM';
+import {faker} from '@faker-js/faker';
 describe('all galleries page', ()=>{
 
     let filterData = {
-        filterInput: 'zadatak galerija',
+        filterInput: faker.name.title(),
     };
 
     it('visit all galleries page', ()=> {
