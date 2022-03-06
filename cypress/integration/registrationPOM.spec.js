@@ -45,7 +45,7 @@ describe('register user', ()=>{
         registerPage.alert.should('have.class', 'alert');
     });
 
-    it.only('valid registration', ()=>{           
+    it('valid registration', ()=>{           
         registerPage.register(userData.randomFirstName,userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword);
     });
 
