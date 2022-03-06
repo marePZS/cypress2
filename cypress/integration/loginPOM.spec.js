@@ -1,9 +1,14 @@
 ///<reference types="cypress"/>
 import {loginPage} from '../pageObjects/loginPOM';
+const {faker} = require("@faker-js/faker");
 
 describe('login test POM', ()=>{
 
-    
+    let userData = {
+        randomName: faker.name.findName(),
+        randomEmail: faker.internet.email(),
+        randomPassword: faker.internet.password()
+    };
 
     before('visit gallery page', ()=>{
         cy.visit("/login");
@@ -11,7 +16,7 @@ describe('login test POM', ()=>{
 
     it('click on the login button', ()=>{
         
-        loginPage.login('markopzs1@test.com','password123');
+        loginPage.login(userData.randomEmail, userData.randomPassword);
 
     });
 

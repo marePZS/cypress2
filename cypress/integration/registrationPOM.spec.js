@@ -1,7 +1,18 @@
 /// <reference types="cypress" />
 import {registerPage} from '../pageObjects/registrationPOM';
+const {faker} = require("@faker-js/faker");
 
 describe('register user', ()=>{
+
+    let userData = {
+        randomFirstName: faker.name.firstName(),
+        randomLastName: faker.name.lastName(),
+        randomEmail: faker.internet.email(),
+        usedEmail: 'markopzs1@test.com',
+        invalidEmail: 'markopzs1test.com',
+        randomPassword: faker.internet.password(),
+        randomPassword2: faker.internet.password(),
+    };
 
     beforeEach('visit registration page', ()=> {
         cy.visit('/register');
@@ -9,33 +20,33 @@ describe('register user', ()=>{
     });
 
     it('without first-name', ()=>{ 
-        registerPage.register(' ','Pzs', 'markopzs7@test.com', 'password123', 'password123');
+        registerPage.register('',userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword);
         registerPage.firstName.should('be.empty');
     });
 
     it('without last-name', ()=>{ 
-        registerPage.register('Marko',' ', 'markopzs7@test.com', 'password123', 'password123');
+        registerPage.register(userData.randomFirstName,'', userData.randomEmail, userData.randomPassword, userData.randomPassword);
         registerPage.lastName.should('be.empty');
     });
 
     it('invalid email', ()=>{    
-        registerPage.register('Marko','Pzs', 'markopzs7@testcom', 'password123', 'password123');
+        registerPage.register(userData.randomFirstName,userData.randomLastName, userData.invalidEmail, userData.randomPassword, userData.randomPassword);
         registerPage.alert.should('have.class', 'alert');
         
     });
     
     it('already used email', ()=>{     
-        registerPage.register('Marko','Pzs', 'markopzs1@test.com', 'password123', 'password123');
+        registerPage.register(userData.randomFirstName,userData.randomLastName, userData.usedEmail, userData.randomPassword, userData.randomPassword);
         registerPage.alert.should('have.class', 'alert');
     });
 
     it('password-confirmation invalid', ()=>{
-        registerPage.register('Marko','Pzs', 'markopzs7@test.com', 'password123', 'password1234444');
+        registerPage.register(userData.randomFirstName,userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword2);
         registerPage.alert.should('have.class', 'alert');
     });
 
-    // it('valid registration', ()=>{           // ------->  valid only once
-    //     registerPage.register('Marko','Pzs', 'markopzs7@test.com', 'password123', 'password123');
-    // });
+    it.only('valid registration', ()=>{           
+        registerPage.register(userData.randomFirstName,userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword);
+    });
 
 });
