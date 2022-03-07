@@ -9,7 +9,7 @@ describe('register user', ()=>{
         randomLastName: faker.name.lastName(),
         randomEmail: faker.internet.email(),
         usedEmail: 'markopzs1@test.com',
-        invalidEmail: 'markopzs1test.com',
+        invalidEmail: 'markopzs1@testcom',
         randomPassword: faker.internet.password(),
         randomPassword2: faker.internet.password(),
     };
@@ -20,12 +20,12 @@ describe('register user', ()=>{
     });
 
     it('without first-name', ()=>{ 
-        registerPage.register('',userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword);
+        registerPage.register(' ',userData.randomLastName, userData.randomEmail, userData.randomPassword, userData.randomPassword);
         registerPage.firstName.should('be.empty');
     });
 
     it('without last-name', ()=>{ 
-        registerPage.register(userData.randomFirstName,'', userData.randomEmail, userData.randomPassword, userData.randomPassword);
+        registerPage.register(userData.randomFirstName,' ', userData.randomEmail, userData.randomPassword, userData.randomPassword);
         registerPage.lastName.should('be.empty');
     });
 
