@@ -10,6 +10,10 @@ describe('all galleries page', ()=>{
     it('visit all galleries page', ()=> {
         cy.visit('/');
     });
+
+    it('load more galleries', ()=>{
+        allGalleries.loadMoreBtn.click();
+    });
     
     it('filter galleries', ()=>{
         allGalleries.filterGalleries(filterData.filterInput);
